@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Happy Birthday Niken Widia Astuti 💖</title>
+
+  <!-- Favicon -->
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌸</text></svg>">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Playfair+Display:ital,wght@0,600;0,800;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Sacramento&display=swap"
+    rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            serif: ['"Playfair Display"', 'serif'],
+            handwriting: ['"Caveat"', 'cursive'],
+            script: ['"Sacramento"', 'cursive'],
+          },
+          colors: {
+            sweetPink: {
+              50: '#FFF0F5',
+              100: '#FFE4E8',
+              200: '#FFCCD5',
+              300: '#FFA3B5',
+              400: '#FF7597',
+              500: '#FF4D79',
+              600: '#F02A5B',
+              700: '#C9184A',
+              800: '#A6113C',
+              900: '#590D22',
+            },
+            softCream: '#FFFDFB',
+            darkEspresso: '#3D262A',
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Canvas Confetti CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body
+  class="bg-[#FCE7F0] text-darkEspresso antialiased min-h-screen flex items-center justify-center p-0 sm:p-4 overflow-hidden selection:bg-sweetPink-200 selection:text-sweetPink-700">
+
+  <!-- Real Audio Player Element (Defaults to Ed Sheeran - Perfect first) -->
+  <audio id="main-audio-player" preload="auto">
+    <source id="audio-source" src="asets/ed-sheeran-perfect.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Ambient Floating Hearts Background Canvas -->
+  <canvas id="ambient-canvas" class="fixed inset-0 pointer-events-none z-0"></canvas>
+
+  <!-- ======================================================== -->
+  <!-- ANDROID SMARTPHONE SHELL CONTAINER -->
+  <!-- ======================================================== -->
+  <div
+    class="android-device-wrapper w-full max-w-[430px] h-[100dvh] sm:h-[880px] sm:max-h-[94vh] relative z-10 flex flex-col bg-sweetPink-50 sm:rounded-[44px] shadow-2xl sm:shadow-[0_25px_70px_rgba(240,42,91,0.25)] sm:border-[8px] sm:border-white/90 overflow-hidden">
+
+    <!-- Android Top Bezel / Status Bar -->
+    <div
+      class="android-status-bar w-full px-6 pt-3 pb-2 flex items-center justify-between text-[11px] font-semibold text-darkEspresso/70 shrink-0 z-30 select-none">
+      <!-- Current Clock -->
+      <span id="android-clock" class="font-sans tracking-tight">07:00</span>
+
+      <!-- Android Punch-hole Camera -->
+      <div class="w-3.5 h-3.5 rounded-full bg-darkEspresso/80 border border-white/20 shadow-inner"></div>
+
+      <!-- System Icons: Wifi, Signal, Battery -->
+      <div class="flex items-center gap-1.5 text-xs">
+        <svg class="w-3 h-3 fill-current" viewBox="0 0 24 24">
+          <path d="M12 4C7.31 4 3.07 5.9 0 8.98L12 21 24 8.98A16.88 16.88 0 0 0 12 4z" />
+        </svg>
+        <span class="text-[10px] font-mono">5G</span>
+        <!-- Battery Icon -->
+        <div class="w-4 h-2.5 border border-darkEspresso/70 rounded-sm p-[1px] flex items-center">
+          <div class="w-full h-full bg-sweetPink-500 rounded-[1px]"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Instagram/Android Story Style Progress Bars (5 Stages) -->
+    <div id="story-progress-bar" class="w-full px-4 pt-1 pb-2 flex items-center gap-1.5 z-30 shrink-0">
+      <div class="progress-bar-seg flex-1 h-1 rounded-full bg-sweetPink-200 overflow-hidden">
+        <div class="progress-fill h-full bg-sweetPink-500 w-0 transition-all duration-300" id="prog-0"></div>
+      </div>
+      <div class="progress-bar-seg flex-1 h-1 rounded-full bg-sweetPink-200 overflow-hidden">
+        <div class="progress-fill h-full bg-sweetPink-500 w-0 transition-all duration-300" id="prog-1"></div>
+      </div>
+      <div class="progress-bar-seg flex-1 h-1 rounded-full bg-sweetPink-200 overflow-hidden">
+        <div class="progress-fill h-full bg-sweetPink-500 w-0 transition-all duration-300" id="prog-2"></div>
+      </div>
+      <div class="progress-bar-seg flex-1 h-1 rounded-full bg-sweetPink-200 overflow-hidden">
+        <div class="progress-fill h-full bg-sweetPink-500 w-0 transition-all duration-300" id="prog-3"></div>
+      </div>
+      <div class="progress-bar-seg flex-1 h-1 rounded-full bg-sweetPink-200 overflow-hidden">
+        <div class="progress-fill h-full bg-sweetPink-500 w-0 transition-all duration-300" id="prog-4"></div>
+      </div>
+    </div>
+
+    <!-- Floating Top Music & Reaction Buttons -->
+    <div class="absolute top-12 right-4 z-40 flex items-center gap-2">
+      <!-- Quick Heart Tap Button -->
+      <button id="floating-heart-btn"
+        class="w-8 h-8 rounded-full bg-white/80 backdrop-blur-md shadow-md border border-white text-sweetPink-500 flex items-center justify-center hover:scale-110 active:scale-90 transition-transform"
+        title="Kirim Hati">
+        <svg class="w-4 h-4 fill-current animate-pulse" viewBox="0 0 24 24">
+          <path
+            d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+        </svg>
+      </button>
+
+      <!-- Mini Music Indicator Pill -->
+      <button id="mini-music-btn" onclick="toggleAudioPlayback()"
+        class="px-2.5 py-1 rounded-full bg-white/80 backdrop-blur-md shadow-md border border-white text-[11px] font-semibold text-sweetPink-600 flex items-center gap-1.5 hover:bg-white transition-all">
+        <span id="mini-disc"
+          class="w-3.5 h-3.5 rounded-full border border-sweetPink-500 border-dashed animate-spin"></span>
+        <span id="mini-music-title">Perfect 🎵</span>
+      </button>
+    </div>
+
+    <!-- ======================================================== -->
+    <!-- SLIDES CONTAINER (EACH PAGE IS A SEPARATE SURPRISE) -->
+    <!-- ======================================================== -->
+    <div id="pages-viewport" class="flex-1 relative w-full h-full overflow-hidden">
+
+      <!-- ======================================================== -->
+      <!-- SCREEN 0: INTRO SCREEN (TULISAN MUNCUL BERTAHAP) -->
+      <!-- ======================================================== -->
+      <section id="page-intro"
+        class="page-slide active flex flex-col items-center justify-center p-6 text-center select-none cursor-pointer"
+        onclick="startExperienceFromIntro()">
+
+        <!-- Soft Glow Ambient Circle -->
+        <div class="absolute w-64 h-64 bg-sweetPink-200/50 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="relative z-10 space-y-3">
+
+          <!-- Line 1: "selamat" -->
+          <div class="stagger-1">
+            <span class="text-xl sm:text-2xl font-serif lowercase italic text-sweetPink-600 tracking-wider">
+              Selamat
+            </span>
+          </div>
+
+          <!-- Line 2: "ulang tahun" -->
+          <div class="stagger-2">
+            <h1 class="text-3xl sm:text-4xl font-serif font-extrabold text-sweetPink-800 tracking-tight leading-tight">
+              Ulang Tahun
+            </h1>
+          </div>
+
+          <!-- Line 3: "Niken Widia Astuti" -->
+          <div class="stagger-3">
+            <h2
+              class="text-2xl sm:text-3xl font-serif font-black text-transparent bg-clip-text bg-gradient-to-r from-sweetPink-600 via-sweetPink-500 to-sweetPink-700 tracking-normal mt-1">
+              Niken Widia Astuti
+            </h2>
+          </div>
+
+          <!-- Line 4: Icon Love -->
+          <div class="stagger-4 py-2 flex items-center justify-center">
+            <div class="relative">
+              <span class="text-5xl filter drop-shadow animate-heart-beat inline-block">💖</span>
+            </div>
+          </div>
+
+          <!-- Line 5: "Happy Birthday Sayangku" -->
+          <div class="stagger-5">
+            <p class="font-script text-3xl sm:text-4xl text-sweetPink-700 font-bold">
+              Happy Birthday Sayangku
+            </p>
+          </div>
+
+          <!-- Line 6: Petunjuk Melanjutkan ke Amplop -->
+          <div class="stagger-6 pt-8">
+            <button onclick="startExperienceFromIntro(); event.stopPropagation();"
+              class="px-6 py-2.5 rounded-full bg-white/90 hover:bg-white text-sweetPink-600 font-semibold text-xs border border-sweetPink-200 shadow-md flex items-center gap-2 mx-auto active:scale-95 transition-all">
+              <span>Sentuh untuk membuka amplop 💌</span>
+              <svg class="w-3.5 h-3.5 animate-bounce-x" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </button>
+            <p class="text-[10px] text-darkEspresso/40 mt-2">
+              (Lagu Ed Sheeran - Perfect akan terputar 🎧)
+            </p>
+          </div>
+
+        </div>
+      </section>
+
+
+      <!-- ======================================================== -->
+      <!-- SCREEN 1: ENVELOPE OPENING (AMPLOP PINK 3D) -->
+      <!-- ======================================================== -->
+      <section id="page-envelope" class="page-slide flex flex-col items-center justify-center p-6 text-center">
+        <div class="space-y-2 mb-6 animate-fade-in">
+          <span
+            class="inline-block px-3.5 py-1 rounded-full text-[11px] font-bold tracking-wider uppercase bg-sweetPink-100 text-sweetPink-600 border border-sweetPink-200">
+            💌 Surat Spesial Hari Ini
+          </span>
+          <h2 class="text-2xl font-serif font-extrabold text-sweetPink-800 leading-tight">
+            Untuk Niken Widia Astuti 🌸
+          </h2>
+          <p class="text-xs text-darkEspresso/70">
+            Ada sebuah kejutan manis yang sudah disiapkan dari lubuk hati terdalam...
+          </p>
+        </div>
+
+        <!-- 3D Vintage Pink Envelope -->
+        <div class="envelope-box cursor-pointer group my-2" onclick="openEnvelope()">
+          <div class="envelope-inner">
+            <div class="envelope-back bg-[#FAD2E1]"></div>
+
+            <!-- Letter Sliding Out -->
+            <div class="envelope-letter bg-white shadow-lg p-3 text-left">
+              <div class="w-8 h-1 bg-sweetPink-400 rounded-full mb-2"></div>
+              <p class="font-script text-base text-sweetPink-600">Dear Niken tersayang,</p>
+              <p class="text-[9px] text-darkEspresso/70 mt-1 line-clamp-3">Selamat ulang tahun sayangku, buka surat ini
+                untuk melihat kejutannya...</p>
+            </div>
+
+            <!-- Front Pockets -->
+            <div class="envelope-pocket"></div>
+            <div class="envelope-bottom"></div>
+
+            <!-- Top Fold -->
+            <div class="envelope-top bg-[#F7CAD0]"></div>
+
+            <!-- Pink Golden Wax Seal -->
+            <div class="wax-seal group-hover:scale-105 transition-transform">
+              <div class="wax-seal-inner">
+                <span class="text-xs">💖</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-8 space-y-2">
+          <button onclick="openEnvelope()"
+            class="px-7 py-3 rounded-full bg-sweetPink-500 hover:bg-sweetPink-600 active:scale-95 text-white font-semibold text-xs shadow-lg shadow-sweetPink-500/30 flex items-center gap-2 mx-auto transition-all">
+            <span>Buka Amplop Sekarang</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </button>
+        </div>
+      </section>
+
+
+      <!-- ======================================================== -->
+      <!-- PAGE 1: KALENDER HARI INI -> BERGESER KE KUE & LILIN -->
+      <!-- ======================================================== -->
+      <section id="page-1" class="page-slide flex flex-col justify-between p-6">
+
+        <!-- STEP 1A: KALENDER HARI INI -->
+        <div id="calendar-stage"
+          class="flex-1 flex flex-col items-center justify-center text-center transition-all duration-700">
+          <span
+            class="px-3 py-1 rounded-full text-[11px] font-bold bg-white text-sweetPink-600 border border-sweetPink-200 shadow-sm mb-4">
+            ✨ Tanggal Paling Istimewa ✨
+          </span>
+
+          <!-- Realistic Aesthetic Calendar Card -->
+          <div
+            class="calendar-card w-64 bg-white rounded-3xl shadow-xl border-4 border-white overflow-hidden transform hover:scale-105 transition-transform">
+            <!-- Calendar Header -->
+            <div
+              class="bg-gradient-to-r from-sweetPink-500 to-sweetPink-600 text-white py-3 px-4 flex items-center justify-between">
+              <div class="flex items-center gap-1.5">
+                <div class="w-2.5 h-2.5 rounded-full bg-white/40"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-white/40"></div>
+              </div>
+              <span id="cal-month-year" class="text-xs font-bold tracking-wider uppercase font-sans">NOVEMBER
+                2026</span>
+              <span class="text-xs">🌸</span>
+            </div>
+
+            <!-- Calendar Big Date Body -->
+            <div class="py-6 px-4 bg-gradient-to-b from-white via-sweetPink-50/30 to-sweetPink-100/50">
+              <span id="cal-day-name"
+                class="text-xs font-semibold text-sweetPink-600 uppercase tracking-widest block mb-1">HARI INI</span>
+              <span id="cal-date-number"
+                class="text-6xl font-serif font-black text-sweetPink-700 block tracking-tight">10</span>
+              <p class="text-[11px] font-medium text-darkEspresso/60 mt-2">Hari Lahir Bidadariku</p>
+            </div>
+
+            <!-- Calendar Footer -->
+            <div class="bg-sweetPink-50 py-2.5 px-4 border-t border-sweetPink-100 text-center">
+              <p class="font-handwriting text-base font-bold text-sweetPink-700">
+                "Happy Birthday, Niken Widia Astuti!"
+              </p>
+            </div>
+          </div>
+
+          <!-- Slide to Cake Trigger -->
+          <button onclick="revealCakeStage()"
+            class="mt-8 px-6 py-2.5 rounded-full bg-sweetPink-500 hover:bg-sweetPink-600 text-white font-semibold text-xs shadow-md shadow-sweetPink-500/25 flex items-center gap-2 transition-all active:scale-95">
+            <span>Lihat Kue Ulang Tahunmu 🎂 ➔</span>
+          </button>
+        </div>
+
+        <!-- STEP 1B: KUE ULANG TAHUN & LILIN INTERAKTIF (HIDDEN INITIALLY) -->
+        <div id="cake-stage"
+          class="hidden flex-1 flex flex-col items-center justify-center text-center transition-all duration-700">
+          <span
+            class="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest bg-sweetPink-100 text-sweetPink-600 border border-sweetPink-200 mb-2">
+            Make A Wish 🕯️
+          </span>
+          <h2 class="text-xl font-serif font-bold text-sweetPink-800">
+            Tiup Lilin Ulang Tahunmu!
+          </h2>
+          <p id="cake-instruction" class="text-xs text-darkEspresso/60 mt-1 max-w-xs mb-4">
+            Pejamkan mata, buat satu permohonan tulus, lalu <span
+              class="text-sweetPink-600 font-bold underline decoration-wavy decoration-sweetPink-400">klik
+              lilinnya</span> untuk meniup! ✨
+          </p>
+
+          <!-- The Interactive Cake -->
+          <div class="relative w-56 h-52 my-2 flex flex-col items-center justify-end">
+            <!-- Candle & Flame -->
+            <div id="candle-element" class="candle-container relative z-20 cursor-pointer"
+              onclick="blowCandleAndAdvance()">
+              <!-- Flame -->
+              <div id="candle-flame" class="flame">
+                <div class="flame-inner"></div>
+              </div>
+              <!-- Smoke puff when blown -->
+              <div id="candle-smoke" class="smoke-container hidden">
+                <div class="smoke-puff s1"></div>
+                <div class="smoke-puff s2"></div>
+                <div class="smoke-puff s3"></div>
+              </div>
+              <!-- Candle Body -->
+              <div class="candle-stick"></div>
+            </div>
+
+            <!-- Cake Body (Strawberry Pink Cake) -->
+            <div class="cake-body relative z-10 w-44">
+              <!-- Top Tier -->
+              <div
+                class="cake-tier-top bg-gradient-to-b from-[#FFF0F5] to-[#FFD1DC] h-12 rounded-t-2xl border-t-4 border-white shadow-sm flex items-center justify-around px-3">
+                <span class="text-sm -translate-y-2.5 drop-shadow">🍓</span>
+                <span class="text-sm -translate-y-3.5 drop-shadow">🍓</span>
+                <span class="text-sm -translate-y-2.5 drop-shadow">🍓</span>
+              </div>
+
+              <!-- Frosting Drips -->
+              <div class="frosting-drips flex justify-around -mt-1 relative z-10">
+                <div class="drip w-3 h-4 bg-[#FFF0F5] rounded-b-full"></div>
+                <div class="drip w-4 h-6 bg-[#FFF0F5] rounded-b-full"></div>
+                <div class="drip w-3 h-5 bg-[#FFF0F5] rounded-b-full"></div>
+                <div class="drip w-4 h-6 bg-[#FFF0F5] rounded-b-full"></div>
+              </div>
+
+              <!-- Bottom Tier -->
+              <div
+                class="cake-tier-bottom bg-gradient-to-b from-[#FFB3C1] to-[#FF8DA1] h-14 rounded-b-xl border-b-4 border-[#FF758F] shadow-md flex items-center justify-center">
+                <span class="text-[10px] font-serif font-bold text-white tracking-widest uppercase">Niken</span>
+              </div>
+
+              <!-- Plate -->
+              <div
+                class="cake-plate w-52 h-2.5 bg-gradient-to-r from-pink-100 via-white to-pink-100 rounded-full mx-auto -mt-1 shadow-md border border-pink-200">
+              </div>
+            </div>
+          </div>
+
+          <p class="text-[11px] font-medium text-sweetPink-600 mt-2 animate-pulse">
+            👆 Sentuh apinya untuk meniup lilin
+          </p>
+        </div>
+
+      </section>
+
+
+      <!-- ======================================================== -->
+      <!-- PAGE 2: UCAPAN SELAMAT ULANG TAHUN DARIKU (CUSTOM TEXT) -->
+      <!-- ======================================================== -->
+      <section id="page-2" class="page-slide flex flex-col justify-between p-5 overflow-y-auto">
+        <div class="space-y-3">
+
+          <!-- Cute Washi Tape & Header -->
+          <div class="text-center pt-1">
+            <span
+              class="inline-block px-3 py-0.5 rounded-full text-[10px] font-bold tracking-wider uppercase bg-sweetPink-100 text-sweetPink-700 border border-sweetPink-200">
+              💌 Surat Dari Lubuk Hatiku
+            </span>
+            <h2 class="text-xl sm:text-2xl font-serif font-black text-sweetPink-800 mt-1">
+              Selamat Ulang Tahun, <br>Niken Widia Astuti 💖
+            </h2>
+          </div>
+
+          <!-- Letter Card with exact user text -->
+          <div class="relative bg-white/95 rounded-3xl p-4 sm:p-5 border border-sweetPink-200 shadow-md space-y-3">
+            <div class="washi-tape-pink -top-2.5 left-1/2 -translate-x-1/2"></div>
+
+            <p class="text-xs text-darkEspresso/85 leading-relaxed font-sans whitespace-pre-line">
+              Selamat ulang tahun sayangku cintaku, selamat bertambahnya usia sayangkuu. Makasih sudah nemenin aku
+              sayang tiap hari, tiap malamnya, selalu perhatiin aku. makasih sayangku cintakuu.. Terus jga makasih sudah
+              jadi sosok yang selalu ada buat akuu, selalu perhatiann, dan lumayan sabar sama aku heheee.
+
+              aku minta maaf jga sayang karena sudah beberapa kali jdi pelupa akhir akhir ini sampe aku jga telat bilang
+              ulang tahun ke kamu sayangg. maaf sayangku cintakuuu.
+
+              terus untuk harapan, semoga semua yang sayangku harapin terkabul, jadi makin dewasa, dipermudah jalannya,
+              dan makin sayang sama aku heheee. i love you sayangku cintakuuu
+            </p>
+
+            <!-- Signature at bottom right -->
+            <div class="pt-3 border-t border-sweetPink-100/80 text-right space-y-0.5">
+              <p class="text-[11px] text-darkEspresso/60 italic font-serif leading-snug">
+                dengan semua cintaku di seluruh alam semesta ini.
+              </p>
+              <p class="text-xs text-sweetPink-600 font-medium">
+                pacar tercintamu
+              </p>
+              <p class="font-handwriting text-2xl font-bold text-sweetPink-700 pt-0.5">
+                Ramaditya Maulana ❤️
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navigation Button to Music Vinyl Page -->
+        <div class="pt-3 pb-1">
+          <button onclick="goToPage(2)"
+            class="w-full py-3 rounded-2xl bg-sweetPink-500 hover:bg-sweetPink-600 text-white font-semibold text-xs shadow-md shadow-sweetPink-500/25 flex items-center justify-center gap-2 active:scale-95 transition-all">
+            <span>Dengarkan Lagu Spesial Kita 🎵 ➔</span>
+          </button>
+        </div>
+      </section>
+
+
+      <!-- ======================================================== -->
+      <!-- PAGE 4: MUSIC PLAYER DENGAN PIRINGAN HITAM (VINYL RECORD) -->
+      <!-- ======================================================== -->
+      <section id="page-4" class="page-slide flex flex-col justify-between p-6">
+        <div class="flex-1 flex flex-col items-center justify-center text-center">
+
+          <span
+            class="inline-block px-3 py-1 rounded-full text-[10px] font-bold tracking-wider uppercase bg-sweetPink-100 text-sweetPink-700 border border-sweetPink-200 mb-2">
+            🎵 Lagu Romantis Favorit Kita
+          </span>
+
+          <!-- Two Song Selector Tabs (Ed Sheeran first) -->
+          <div
+            class="flex items-center gap-2 p-1 bg-white/80 backdrop-blur-md rounded-2xl border border-sweetPink-200 shadow-sm mb-4">
+            <button id="song-tab-0" onclick="switchSong(0)"
+              class="song-tab active px-3 py-1.5 rounded-xl text-[11px] font-bold transition-all">
+              Ed Sheeran
+            </button>
+            <button id="song-tab-1" onclick="switchSong(1)"
+              class="song-tab px-3 py-1.5 rounded-xl text-[11px] font-bold transition-all">
+              James Arthur
+            </button>
+          </div>
+
+          <!-- THE REALISTIC VINYL TURNTABLE COMPONENT (NO VIDEO) -->
+          <div
+            class="vinyl-turntable relative w-64 h-64 bg-gradient-to-br from-white to-sweetPink-100 rounded-3xl p-4 shadow-xl border-2 border-white flex items-center justify-center my-1">
+
+            <!-- Vinyl Record (Piringan Hitam) -->
+            <div id="vinyl-disc"
+              class="vinyl-disc relative w-52 h-52 rounded-full shadow-2xl flex items-center justify-center">
+
+              <!-- Concentric Vinyl Grooves -->
+              <div class="vinyl-groove-lines"></div>
+
+              <!-- Center Album Label with Niken's Photo -->
+              <div
+                class="vinyl-center-label w-20 h-20 rounded-full border-4 border-sweetPink-400 overflow-hidden shadow-inner flex items-center justify-center bg-sweetPink-200">
+                <img id="vinyl-art" src="asets/aset%201.jpeg" alt="Niken Widia Astuti"
+                  class="w-full h-full object-cover">
+                <!-- Spindle Center Hole -->
+                <div class="absolute w-3.5 h-3.5 rounded-full bg-white border border-gray-400"></div>
+              </div>
+            </div>
+
+            <!-- Tonearm (Jarum Piringan Lagu) -->
+            <div id="vinyl-tonearm" class="tonearm-container">
+              <div class="tonearm-base"></div>
+              <div class="tonearm-rod"></div>
+              <div class="tonearm-head"></div>
+            </div>
+
+            <!-- Sound Waves Equalizer Indicator -->
+            <div id="sound-equalizer"
+              class="sound-wave-bars absolute bottom-3 left-1/2 -translate-x-1/2 flex items-end gap-1 h-5">
+              <span class="bar b1"></span>
+              <span class="bar b2"></span>
+              <span class="bar b3"></span>
+              <span class="bar b4"></span>
+              <span class="bar b5"></span>
+            </div>
+          </div>
+
+          <!-- Currently Playing Track Title & Artist -->
+          <div class="mt-4 text-center">
+            <h3 id="current-song-title" class="font-serif font-extrabold text-base text-sweetPink-900 leading-snug">
+              Perfect
+            </h3>
+            <p id="current-song-artist" class="text-xs text-sweetPink-600 font-medium">
+              Ed Sheeran (Original Audio)
+            </p>
+          </div>
+
+          <!-- Play / Pause Controls & Timeline -->
+          <div class="w-full max-w-xs mt-3 flex items-center justify-center gap-4">
+            <button onclick="prevSong()"
+              class="w-9 h-9 rounded-full bg-white text-sweetPink-600 shadow-sm hover:scale-105 active:scale-90 flex items-center justify-center">
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                <path d="M6 6h2v12H6zm3.5 6l8.5 6V6z" />
+              </svg>
+            </button>
+
+            <!-- Main Big Play/Pause Toggle -->
+            <button id="vinyl-play-btn" onclick="toggleAudioPlayback()"
+              class="w-13 h-13 p-3.5 rounded-full bg-sweetPink-500 hover:bg-sweetPink-600 text-white shadow-lg shadow-sweetPink-500/30 hover:scale-105 active:scale-95 flex items-center justify-center transition-all">
+              <svg id="vinyl-play-icon" class="w-6 h-6 fill-current" viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            </button>
+
+            <button onclick="nextSong()"
+              class="w-9 h-9 rounded-full bg-white text-sweetPink-600 shadow-sm hover:scale-105 active:scale-90 flex items-center justify-center">
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Navigation Button -->
+        <div class="pt-4 pb-2">
+          <button onclick="goToPage(3)"
+            class="w-full py-3 rounded-2xl bg-sweetPink-500 hover:bg-sweetPink-600 text-white font-semibold text-xs shadow-md shadow-sweetPink-500/25 flex items-center justify-center gap-2 active:scale-95 transition-all">
+            <span>Buka Galeri kita 📸 ➔</span>
+          </button>
+        </div>
+      </section>
+
+
+      <!-- ======================================================== -->
+      <!-- PAGE 5: MEMORIES GALLERY (GALERI KITA) -->
+      <!-- ======================================================== -->
+      <section id="page-5" class="page-slide flex flex-col justify-between p-4 sm:p-6 overflow-hidden">
+
+        <!-- Header -->
+        <div class="text-center shrink-0 pt-1 pb-2">
+          <span
+            class="inline-block px-3 py-1 rounded-full text-[10px] font-bold tracking-wider uppercase bg-sweetPink-100 text-sweetPink-700 border border-sweetPink-200">
+            📸 Memories Scrapbook
+          </span>
+          <h2 class="text-xl font-serif font-black text-sweetPink-800 mt-1">
+            Galeri kita ✨
+          </h2>
+          <p class="text-[11px] text-darkEspresso/60">Geser untuk melihat semua foto kenangan kita</p>
+        </div>
+
+        <!-- Scrollable Memories Grid / Carousel for All 10 Photos in asets -->
+        <div class="flex-1 overflow-y-auto px-1 py-2 space-y-4">
+          <div class="grid grid-cols-2 gap-3 pb-4">
+
+            <!-- Photo 1 -->
+            <div class="polaroid-mini" onclick="openPhotoModal(0)" style="transform: rotate(-1.5deg)">
+              <div class="washi-tape-tiny -top-2 left-4"></div>
+              <div class="polaroid-mini-img-wrap">
+                <img src="asets/aset%201.jpeg" alt="Memory 1" class="w-full h-full object-cover">
+              </div>
+              <p class="polaroid-mini-cap">Senyuman termanismu 🌸</p>
+            </div>
+
+            <!-- Photo 2 -->
+            <div class="polaroid-mini" onclick="openPhotoModal(1)" style="transform: rotate(2deg)">
+              <div class="washi-tape-tiny -top-2 right-4 bg-sweetPink-300/80"></div>
+              <div class="polaroid-mini-img-wrap">
+                <img src="asets/aset%202.jpeg" alt="Memory 2" class="w-full h-full object-cover">
+              </div>
+              <p class="polaroid-mini-cap">Momen paling bahagia ✨</p>
+            </div>
+
+            <!-- Photo 3 -->
+            <div class="polaroid-mini" onclick="openPhotoModal(2)" style="transform: rotate(-2deg)">
+              <div class="washi-tape-tiny -top-2 left-6 bg-pink-200/90"></div>
+              <div class="polaroid-mini-img-wrap">
+                <img src="asets/aset%203.jpeg" alt="Memory 3" class="w-full h-full object-cover">
+              </div>
+              <p class="polaroid-mini-cap">Selalu bikin kangen 💖</p>
+            </div>
+
+            <!-- Photo 4 -->
+            <div class="polaroid-mini" onclick="openPhotoModal(3)" style="transform: rotate(1.5deg)">
+              <div class="washi-tape-tiny -top-2 right-6"></div>
+              <div class="polaroid-mini-img-wrap">
+                <img src="asets/aset4.jpeg" alt="Memory 4" class="w-full h-full object-cover">
+              </div>
+              <p class="polaroid-mini-cap">Tawa lepas kita berdua 🥂</p>
+            </div>
+
+            <!-- Photo 5 -->
+            <div class="polaroid-mini" onclick="openPhotoModal(4)" style="transform: rotate(-1deg)">
+              <div class="washi-tape-tiny -top-2 left-5 bg-sweetPink-200/90"></div>
+              <div class="polaroid-mini-img-wrap">
+                <img src="asets/aset5.jpeg" alt="Memory 5" class="w-full h-full object-cover">
+              </div>
+              <p class="polaroid-mini-cap">Bidadari kesayanganku 🌟</p>
+            </div>
+
+            <!-- Photo 6 -->
+            <div class="polaroid-mini" onclick="openPhotoModal(5)" style="transform: rotate(2.2deg)">
+              <div class="washi-tape-tiny -top-2 right-5"></div>
+              <div class="polaroid-mini-img-wrap">
+                <img src="asets/aset6.jpeg" alt="Memory 6" class="w-full h-full object-cover">
+              </div>
+              <p class="polaroid-mini-cap">Cantik di setiap waktu 🥰</p>
+            </div>
+
+            <!-- Photo 7 -->
+            <div class="polaroid-mini" onclick="openPhotoModal(6)" style="transform: rotate(-2deg)">
+              <div class="washi-tape-tiny -top-2 left-4 bg-sweetPink-300/80"></div>
+              <div class="polaroid-mini-img-wrap">
+                <img src="asets/aset%207.jpeg" alt="Memory 7" class="w-full h-full object-cover">
+              </div>
+              <p class="polaroid-mini-cap">Hari yang indah bersamamu 🌸</p>
+            </div>
+
+            <!-- Photo 8 -->
+            <div class="polaroid-mini" onclick="openPhotoModal(7)" style="transform: rotate(1.8deg)">
+              <div class="washi-tape-tiny -top-2 right-4"></div>
+              <div class="polaroid-mini-img-wrap">
+                <img src="asets/aset8.jpeg" alt="Memory 8" class="w-full h-full object-cover">
+              </div>
+              <p class="polaroid-mini-cap">Selalu ada tawa bersamamu 💫</p>
+            </div>
+
+            <!-- Photo 9 -->
+            <div class="polaroid-mini" onclick="openPhotoModal(8)" style="transform: rotate(-1.5deg)">
+              <div class="washi-tape-tiny -top-2 left-5 bg-sweetPink-200/90"></div>
+              <div class="polaroid-mini-img-wrap">
+                <img src="asets/aset9.jpeg" alt="Memory 9" class="w-full h-full object-cover">
+              </div>
+              <p class="polaroid-mini-cap">Cerita manis kita berdua 🌷</p>
+            </div>
+
+            <!-- Photo 10 -->
+            <div class="polaroid-mini" onclick="openPhotoModal(9)" style="transform: rotate(2deg)">
+              <div class="washi-tape-tiny -top-2 right-5 bg-pink-100"></div>
+              <div class="polaroid-mini-img-wrap">
+                <img src="asets/aset10.jpeg" alt="Memory 10" class="w-full h-full object-cover">
+              </div>
+              <p class="polaroid-mini-cap">Selamanya di hatiku ❤️</p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Navigation Button to Final Page -->
+        <div class="pt-2 pb-2 shrink-0">
+          <button onclick="goToPage(4)"
+            class="w-full py-3 rounded-2xl bg-sweetPink-500 hover:bg-sweetPink-600 text-white font-semibold text-xs shadow-md shadow-sweetPink-500/25 flex items-center justify-center gap-2 active:scale-95 transition-all">
+            <span>Pesan Terakhir Untukmu ❤️ ➔</span>
+          </button>
+        </div>
+      </section>
+
+
+      <!-- ======================================================== -->
+      <!-- PAGE 6: PENUTUP CINTA (RAMA & NIKEN) -->
+      <!-- ======================================================== -->
+      <section id="page-6"
+        class="page-slide flex flex-col items-center justify-between p-5 text-center overflow-y-auto">
+
+        <div class="flex-1 flex flex-col items-center justify-center space-y-4 my-auto w-full">
+
+          <div class="space-y-1">
+            <span
+              class="inline-block px-3 py-0.5 rounded-full text-[10px] font-bold tracking-wider uppercase bg-sweetPink-100 text-sweetPink-700 border border-sweetPink-200">
+              ✨ Takdir Terindah ✨
+            </span>
+            <h2 class="text-xl sm:text-2xl font-serif font-black text-sweetPink-800 leading-tight">
+              I Love You Always, <br>Niken Widia Astuti!
+            </h2>
+          </div>
+
+          <!-- SPECIAL DUO PHOTOS (RAMA ❤️ NIKEN) -->
+          <div class="w-full max-w-xs bg-white/95 rounded-3xl p-4 border border-sweetPink-200 shadow-lg">
+            <div class="flex items-center justify-center gap-2 sm:gap-3">
+
+              <!-- Rama -->
+              <div class="polaroid-duo group cursor-pointer" onclick="openSpecialPhoto('rama')"
+                style="transform: rotate(-3deg);">
+                <div class="washi-tape-tiny -top-2 left-3 bg-blue-100/90"></div>
+                <div
+                  class="w-24 h-24 sm:w-28 sm:h-28 rounded-xl overflow-hidden bg-sweetPink-50 shadow-sm border border-sweetPink-100">
+                  <img src="asets/rama%20kecil.jpeg" alt="Rama" class="w-full h-full object-cover">
+                </div>
+                <p class="font-handwriting text-base font-bold text-darkEspresso/80 mt-1.5">
+                  Rama 👦
+                </p>
+              </div>
+
+              <!-- Animated Love Heart In Between -->
+              <div class="flex flex-col items-center justify-center shrink-0 px-1">
+                <span class="text-3xl sm:text-4xl filter drop-shadow animate-heart-beat inline-block">💖</span>
+                <span class="text-[9px] font-mono text-sweetPink-500 font-bold mt-1 tracking-wider">FOREVER</span>
+              </div>
+
+              <!-- Niken -->
+              <div class="polaroid-duo group cursor-pointer" onclick="openSpecialPhoto('niken')"
+                style="transform: rotate(3deg);">
+                <div class="washi-tape-tiny -top-2 right-3 bg-sweetPink-200/90"></div>
+                <div
+                  class="w-24 h-24 sm:w-28 sm:h-28 rounded-xl overflow-hidden bg-sweetPink-50 shadow-sm border border-sweetPink-100">
+                  <img src="asets/niken%20kecil.jpeg" alt="Niken" class="w-full h-full object-cover">
+                </div>
+                <p class="font-handwriting text-base font-bold text-darkEspresso/80 mt-1.5">
+                  Niken 👧
+                </p>
+              </div>
+
+            </div>
+
+            <p class="text-[11px] text-darkEspresso/75 leading-relaxed mt-3.5 italic font-serif">
+              “Siapa sangka, dua anak kecil ini ditakdirkan semesta untuk bertemu dan saling mencintai sedalam ini...”
+            </p>
+
+            <div class="mt-2.5 pt-2 border-t border-sweetPink-100 text-center">
+              <p class="font-script text-xl sm:text-2xl text-sweetPink-600 font-bold">
+                Ramaditya Maulana & Niken Widia Astuti
+              </p>
+              <p class="text-[10px] text-darkEspresso/40">Selamanya di seluruh alam semesta ✨</p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Back to beginning / restart button -->
+        <div class="pt-3 pb-1">
+          <button onclick="goToPage(0)"
+            class="text-[11px] font-semibold text-sweetPink-600 hover:text-sweetPink-700 underline">
+            ↺ Putar Ulang Kejutan Dari Awal
+          </button>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- Android Bottom Gesture Pill Indicator -->
+    <div class="android-nav-bar w-full py-2.5 flex items-center justify-center shrink-0 z-30 select-none">
+      <div class="w-32 h-1 bg-darkEspresso/25 rounded-full"></div>
+    </div>
+
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- MODAL: PHOTO LIGHTBOX (ZOOM PHOTO) -->
+  <!-- ======================================================== -->
+  <div id="photo-modal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-sm hidden items-center justify-center p-4"
+    onclick="closePhotoModal()">
+    <div class="relative max-w-xs w-full bg-white rounded-3xl p-3 shadow-2xl overflow-hidden"
+      onclick="event.stopPropagation()">
+      <button onclick="closePhotoModal()"
+        class="absolute top-2.5 right-2.5 w-7 h-7 rounded-full bg-sweetPink-100 hover:bg-sweetPink-200 text-sweetPink-700 flex items-center justify-center text-xs font-bold z-10">
+        ✕
+      </button>
+      <div class="overflow-hidden rounded-2xl max-h-[60vh] bg-stone-100">
+        <img id="modal-img" src="" alt="Zoomed Photo" class="w-full h-full object-contain">
+      </div>
+      <div class="p-3 text-center">
+        <p id="modal-caption" class="font-handwriting text-xl text-sweetPink-700"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Custom Scripts -->
+  <script src="script.js"></script>
+</body>
+
+</html>
